@@ -1,96 +1,111 @@
-"use client";
+'use client';
 
-const stats = [
-  { value: "2X", label: "Average Year Over Year Growth" },
-  { value: "6", label: "Client Exits" },
-  { value: "8", label: "Weeks to Measurable Growth" },
-  { value: "$2.7bn", label: "VC Funding Raised by Our Partners" },
-  { value: "200+", label: "Clients We've Helped Scale" },
-  { value: "12", label: "Years Scaling Ambitious Businesses" },
-];
+import { motion } from 'framer-motion';
+import { useCountUp, fadeInUp, staggerContainer } from '@/lib/animations';
+
+function AnimatedStat({ value, prefix = '', suffix = '', label, sublabel }: { 
+  value: number; 
+  prefix?: string; 
+  suffix?: string; 
+  label: string;
+  sublabel?: string;
+}) {
+  const { count, ref } = useCountUp(value, 2500);
+  
+  return (
+    <motion.div 
+      ref={ref}
+      variants={fadeInUp}
+      className="flex flex-col"
+    >
+      <span className="text-5xl md:text-7xl font-bold text-white tracking-tighter">
+        {prefix}{count}{suffix}
+      </span>
+      <span className="text-white/80 text-sm md:text-base mt-2 uppercase tracking-wide">
+        {label}
+      </span>
+      {sublabel && (
+        <span className="text-white/60 text-xs mt-1">{sublabel}</span>
+      )}
+    </motion.div>
+  );
+}
 
 export default function StatsSection() {
   return (
-    <section className="bg-brand-black text-white py-20 grid-lines-dark">
-      <div className="grid lg:grid-cols-4 border border-white/10">
-        {/* Title Column */}
-        <div className="p-8 md:p-12 border-b lg:border-b-0 lg:border-r border-white/10 flex items-center">
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-black leading-tight">
-            OUR
-            <br />
-            DATA
-            <br />
-            DOES
-            <br />
-            THE
-            <br />
-            <span className="text-brand-red">TALKING</span>
-          </h2>
-        </div>
+    <section className="bg-brand-black py-20 px-6 md:px-12">
+      <motion.div 
+        variants={staggerContainer}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
+        className="max-w-7xl mx-auto"
+      >
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+          {/* Title Column */}
+          <motion.div variants={fadeInUp} className="lg:col-span-4">
+            <h2 className="text-4xl md:text-6xl font-bold text-white leading-none tracking-tighter">
+              OUR<br />
+              <span className="text-white/40">DATA</span><br />
+              DOES<br />
+              <span className="text-white/40">THE</span><br />
+              TALKING
+            </h2>
+          </motion.div>
 
-        {/* Stats Grid */}
-        <div className="lg:col-span-3 grid md:grid-cols-3">
-          {/* First Row */}
-          <div className="p-8 md:p-12 border-b border-r border-white/10">
-            <span className="text-5xl md:text-6xl font-black">2X</span>
-            <p className="text-xs uppercase tracking-wider mt-4 text-white/60">
-              Average Year Over Year Growth
-            </p>
-          </div>
-          <div className="p-8 md:p-12 border-b border-r border-white/10">
-            <span className="text-5xl md:text-6xl font-black">6</span>
-            <p className="text-xs uppercase tracking-wider mt-4 text-white/60">
-              Client Exits
-            </p>
-          </div>
-          <div className="p-8 md:p-12 border-b border-white/10">
-            <span className="text-5xl md:text-6xl font-black">8</span>
-            <p className="text-xs uppercase tracking-wider mt-4 text-white/60">
-              Weeks to Measurable Growth
-            </p>
-          </div>
+          {/* Stats Grid */}
+          <div className="lg:col-span-8 grid grid-cols-2 md:grid-cols-3 gap-8">
+            <AnimatedStat 
+              value={2} 
+              suffix="X" 
+              label="Average Year" 
+              sublabel="Over Year Growth" 
+            />
+            
+            <AnimatedStat 
+              value={6} 
+              label="Client" 
+              sublabel="Exits" 
+            />
+            
+            <AnimatedStat 
+              value={8} 
+              label="Weeks to" 
+              sublabel="Measurable Growth" 
+            />
 
-          {/* Second Row */}
-          <div className="p-8 md:p-12 border-b md:border-b-0 border-r border-white/10">
-            <span className="text-4xl md:text-5xl font-black">$2.7bn</span>
-            <p className="text-xs uppercase tracking-wider mt-4 text-white/60">
-              VC Funding Raised
-              <br />
-              by Our Partners
-            </p>
-          </div>
-          <div className="p-8 md:p-12 border-r border-white/10 row-span-2">
-            <blockquote className="text-lg md:text-xl font-bold leading-snug">
-              <span className="text-brand-red">&ldquo;</span>
-              Born & Bred was a strategic game-changer. Their meticulous curation cut through industry noise, shaping a brand that positions us for scalable success.
-              <span className="text-brand-red">&rdquo;</span>
-            </blockquote>
-            <cite className="block mt-6 text-sm text-white/60 not-italic">
-              Marcus Schiller | Founder
-            </cite>
-          </div>
+            <AnimatedStat 
+              value={2} 
+              prefix="$" 
+              suffix=".7bn" 
+              label="VC Funding Raised" 
+              sublabel="by Our Partners" 
+            />
 
-          {/* Third Row Stats */}
-          <div className="p-8 md:p-12 border-t border-white/10">
-            <span className="text-5xl md:text-6xl font-black">12</span>
-            <p className="text-xs uppercase tracking-wider mt-4 text-white/60">
-              Years Scaling
-              <br />
-              Ambitious Businesses
-            </p>
-          </div>
+            <motion.div variants={fadeInUp} className="col-span-2 flex flex-col justify-center border-l-2 border-brand-red pl-6">
+              <p className="text-white text-base italic leading-relaxed">
+                &ldquo;Born & Bred was a strategic game-changer. Their meticulous curation cut through industry noise, shaping a brand that positions us for scalable success.&rdquo;
+              </p>
+              <p className="text-brand-red mt-4 font-medium">
+                Marcus Schiller <span className="text-white/60">| Founder</span>
+              </p>
+            </motion.div>
 
-          {/* Bottom Row */}
-          <div className="p-8 md:p-12 border-t border-r border-white/10">
-            <span className="text-5xl md:text-6xl font-black">200+</span>
-            <p className="text-xs uppercase tracking-wider mt-4 text-white/60">
-              Clients We&apos;ve
-              <br />
-              Helped Scale
-            </p>
+            <AnimatedStat 
+              value={200} 
+              suffix="+" 
+              label="Clients We&apos;ve" 
+              sublabel="Helped Scale" 
+            />
+            
+            <AnimatedStat 
+              value={12} 
+              label="Years Scaling" 
+              sublabel="Ambitious Businesses" 
+            />
           </div>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }

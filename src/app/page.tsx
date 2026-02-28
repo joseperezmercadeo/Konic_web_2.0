@@ -1,5 +1,5 @@
 import Header from "@/components/Header";
-import Hero from "@/components/Hero";
+import HeroAnimated from "@/components/HeroAnimated";
 import AgencySection from "@/components/AgencySection";
 import ResultsSection from "@/components/ResultsSection";
 import ClientLogos from "@/components/ClientLogos";
@@ -12,9 +12,9 @@ import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen bg-brand-white">
       <Header />
-      <Hero />
+      <HeroAnimated />
       <AgencySection />
       <ResultsSection />
       <ClientLogos />
