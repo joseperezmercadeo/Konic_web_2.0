@@ -1,0 +1,260 @@
+@import url('https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --brand-red: #e51923;
+  --brand-black: #111024;
+  --brand-white: #fafafa;
+  --brand-gray: #9b9aa6;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-white text-brand-black antialiased;
+    font-family: 'Satoshi', sans-serif;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer utilities {
+  .text-outline {
+    -webkit-text-stroke: 2px currentColor;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .text-outline-thick {
+    -webkit-text-stroke: 3px currentColor;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
+/* Custom font face for headlines */
+@font-face {
+  font-family: 'Forma';
+  src: url('https://ext.same-assets.com/3468861848/640137127.false') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--brand-red);
+  border-radius: 4px;
+}
+
+/* Animation keyframes */
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes rotateText {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 30s linear infinite;
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.6s ease-out forwards;
+}
+
+.animate-rotate {
+  animation: rotateText 10s linear infinite;
+}
+
+/* Grid lines */
+.grid-lines {
+  background-image:
+    linear-gradient(to right, rgba(0,0,0,0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0,0,0,0.05) 1px, transparent 1px);
+  background-size: 25% 100%;
+}
+
+.grid-lines-dark {
+  background-image:
+    linear-gradient(to right, rgba(255,255,255,0.1) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255,255,255,0.1) 1px, transparent 1px);
+  background-size: 25% 100%;
+}
+
+/* Custom cursor */
+.cursor-custom {
+  cursor: url('https://ext.same-assets.com/3468861848/3260436958.png'), auto;
+}
+
+/* Hover effects */
+.hover-lift {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+/* Button styles */
+.btn-primary {
+  @apply bg-brand-red text-white px-6 py-3 rounded-full font-medium
+         transition-all duration-300 hover:bg-red-700
+         inline-flex items-center gap-2;
+}
+
+.btn-primary-sm {
+  @apply bg-brand-red text-white px-4 py-2 text-sm rounded-full font-medium
+         transition-all duration-300 hover:bg-red-700
+         inline-flex items-center gap-2;
+}
+
+/* Circular button with arrow */
+.btn-circle {
+  @apply w-12 h-12 rounded-full bg-brand-red text-white flex items-center justify-center
+         transition-all duration-300 hover:scale-110;
+}
+
+.btn-circle-lg {
+  @apply w-20 h-20 rounded-full bg-brand-red text-white flex items-center justify-center
+         transition-all duration-300 hover:scale-110 relative;
+}
+
+/* Card styles */
+.case-card {
+  @apply overflow-hidden transition-all duration-500 hover:scale-[1.02];
+}
+
+/* Gradient backgrounds */
+.gradient-pink-clouds {
+  background: linear-gradient(180deg, #f8d7e8 0%, #e8b4d4 50%, #f0c8e0 100%);
+}
+
+/* Stats section styling */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.stats-grid > div {
+  border: 1px solid rgba(255,255,255,0.1);
+  padding: 2rem;
+}
+
+/* Service grid */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-top: 1px solid rgba(0,0,0,0.1);
+  border-left: 1px solid rgba(0,0,0,0.1);
+}
+
+.services-grid > div {
+  border-right: 1px solid rgba(0,0,0,0.1);
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+  padding: 2rem;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.services-grid > div:hover {
+  background: var(--brand-red);
+  color: white;
+}
+
+/* Text reveal animation */
+.text-reveal {
+  overflow: hidden;
+}
+
+.text-reveal span {
+  display: inline-block;
+  transform: translateY(100%);
+  animation: textReveal 0.8s ease forwards;
+}
+
+@keyframes textReveal {
+  to {
+    transform: translateY(0);
+  }
+}
+
+/* Hero title styling */
+.hero-title {
+  font-family: 'Satoshi', sans-serif;
+  font-weight: 900;
+  font-size: clamp(4rem, 15vw, 12rem);
+  line-height: 0.85;
+  letter-spacing: -0.02em;
+}
+
+/* Pricing cards */
+.pricing-card {
+  @apply border border-gray-200 p-8 rounded-none transition-all duration-300;
+}
+
+.pricing-card:hover {
+  @apply border-brand-red;
+}
+
+/* Tag/Badge styles */
+.tag {
+  @apply inline-flex items-center gap-1 px-3 py-1 bg-gray-100 text-xs rounded-full;
+}
+
+.tag-dark {
+  @apply inline-flex items-center gap-1 px-3 py-1 bg-gray-800 text-white text-xs rounded-full;
+}
